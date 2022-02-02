@@ -26,9 +26,14 @@ const createTR = (item) => {
 };
 
 export const RenderList = (list, tableElement) => {
-  list.forEach((item) => {
+  // Check if the list is empty
+  if(list !== []){
+    list.forEach((item) => {
     tableElement.append(createTR(item));
-  });
+    });
+  } else {
+    // do nothing!
+  }
 };
 
 

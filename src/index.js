@@ -3,9 +3,11 @@ import * as bootstrap from 'bootstrap';
 
 // Import modules
 import * as render from "./_renderList";
+import {validateForm} from "./_formValidation";
 
 // Get elements
 const bookTableBodyElement = document.getElementById("book-table__body");
+const bookFormElement = document.getElementById("book-form");
 
 const tableList = [
 	{
@@ -38,3 +40,7 @@ const tableList = [
 ];
 
 render.RenderList(tableList, bookTableBodyElement);
+
+console.dir(validateForm);
+
+bookFormElement.addEventListener("submit", validateForm, false)
