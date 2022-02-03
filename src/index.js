@@ -2,17 +2,15 @@
 import * as bootstrap from "bootstrap";
 
 // Import modules
-import * as render from "./_renderList";
-import { validateForm } from "./_formValidation";
-import { addBook } from "./_addBook";
-import { startTimer, resetTimer } from "./_timer";
-import { removeAlert, formBlock } from "./_formBlock";
-import { deleteRequest } from "./_deleteRequest";
+import * as render from "./modules/_renderList";
+import { validateForm } from "./modules/_formValidation";
+import { startTimer, resetTimer } from "./modules/_timer";
+import { removeAlert, formBlock } from "./modules/_formBlock";
+import { deleteRequest } from "./modules/_deleteRequest";
 
 // Get elements
 const bookTableBodyElement = document.getElementById("book-table__body");
 const bookFormElement = document.getElementById("book-form");
-const formControls = document.querySelectorAll(".form-control");
 
 const tableList = [];
 let isTimerStarted = false;

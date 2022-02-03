@@ -4,7 +4,7 @@ export const deleteRequest = (event, tableList) => {
 
   // Deletar o item da lista:
   tableList.forEach((item, index) => {
-    if (item.ISSN === elementISSN) {
+    if (item.ISSN === elementTitle) {
       tableList.splice(index - 1, 1);
     }
   });
