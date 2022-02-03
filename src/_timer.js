@@ -7,10 +7,10 @@ const finishTimer = (interval) => {
 };
 
 export const resetTimer = () => {
-	minutes = 60;
-	seconds = 0;
-	updateTimerElement(minutes, seconds);
-}
+  minutes = 60;
+  seconds = 0;
+  updateTimerElement(minutes, seconds);
+};
 
 const updateTimerElement = (minutes, seconds) => {
   // format seconds:
@@ -39,9 +39,8 @@ export const startTimer = () => {
         seconds--;
         updateTimerElement(minutes, seconds);
       }
-    }, 1);
+    }, 1000);
   });
 };
 
 export default timer;
-
