@@ -1,46 +1,44 @@
 // Import all plugins
-import * as bootstrap from 'bootstrap';
+import * as bootstrap from "bootstrap";
 
 // Import modules
 import * as render from "./_renderList";
-import {validateForm} from "./_formValidation";
+import { validateForm } from "./_formValidation";
+import { addBook } from "./_addBook";
+import {startTimer, resetTimer} from "./_timer";
+import { removeAlert, formBlock } from "./_formBlock";
 
 // Get elements
 const bookTableBodyElement = document.getElementById("book-table__body");
 const bookFormElement = document.getElementById("book-form");
+const formControls = document.querySelectorAll(".form-control");
 
-const tableList = [
-	{
-		vinculo: "Aluno",
-		titulo: "Harry Potter",
-		autor: "J. K. Rowling",
-		edicao: 1,
-		ISSN: "978-8532511010",
-		ano: 1997,
-		editora: "Bloomsbury Publishing"	
-	},
-	{
-		vinculo: "Discente",
-		titulo: "O Senhor dos Anéis",
-		autor: "J. R. R. Tolkien",
-		edicao: 1,
-		ISSN: "8595084750",
-		ano: 1954,
-		editora: "Allen & Unwin"	
-	},
-	{
-		vinculo: "Técnico",
-		titulo: "O Pequeno Princípe",
-		autor: "A. de Saint-Exupéry",
-		edicao: 1,
-		ISSN: "978-0152465032",
-		ano: 1943,
-		editora: "Editions Gallimard"	
+const tableList = [];
+let isTimerStarted = false;
+
+bookFormElement.addEventListener("change", (event) => {
+	if(isTimerStarted === false) {
+		startTimer()
+		  .then((result) => {
+		    formBlock(bookFormElement);
+		 })
+		  isTimerStarted = true;
 	}
-];
+});
 
-render.RenderList(tableList, bookTableBodyElement);
-
-console.dir(validateForm);
-
-bookFormElement.addEventListener("submit", validateForm, false)
+bookFormElement.addEventListener(
+  "submit",
+  (event) => {
+	const isValidated = validateForm(event, tableList)
+	// Rerender the list:
+	if(isValidated === true) {
+		render.RenderList(tableList, bookTableBodyElement);
+		bookFormElement.classList.remove("was-validated");
+		bookFormElement.reset();
+		resetTimer();
+		removeAlert();
+		isTimerStarted = false;
+	} 
+  },
+  false
+);

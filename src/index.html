@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../scss/custom.scss" />
   </head>
   <body>
-    <div class="container-fluid bg-dark">
+    <div class="container-fluid bg-dark py-3 px-4 mb-3">
       <header class="container">
         <h1 class="text-white">SiSoLi - Sistema de Solicitação de livros</h1>
       </header>
@@ -14,10 +14,13 @@
 
     <section class="section-form">
       <div class="container">
-        <div class="row">
+        <div
+          class="d-flex flex-row justify-content-between align-items-baseline"
+        >
           <h2>Solicitação de Livros</h2>
-
-          <p>TIMER</p>
+          <p id="timer" class="bg-secondary py-2 px-4 rounded text-white">
+            60:00
+          </p>
         </div>
       </div>
       <form class="container needs-validation" id="book-form" novalidate>
@@ -25,15 +28,18 @@
           <div class="col-md">
             <div class="form-group mb-2">
               <label for="input-vinculo">Selecione o Vínculo</label>
-              <select type="text" id="input-vinculo" class="form-control" required>
+              <select
+                type="text"
+                id="input-vinculo"
+                class="form-control"
+                required
+              >
                 <option value="" selected disabled>Selecione o Vínculo</option>
                 <option value="docente">Docente</option>
                 <option value="discente">Discente</option>
                 <option value="tecnico">Técnico</option>
               </select>
-              <div class="invalid-feedback">
-                Selecione um vínculo!
-              </div>
+              <div class="invalid-feedback">Selecione um vínculo!</div>
             </div>
             <div class="form-group my-2">
               <label for="autor">Autor</label>
@@ -42,58 +48,92 @@
                 class="form-control"
                 id="autor"
                 placeholder="Digite o autor do texto"
+                focusable="false"
                 required
               />
             </div>
             <div class="form-group my-2">
               <label for="issn">ISSN</label>
-              <input type="number" class="form-control" id="issn" placeholder="Digite o issn do livro">
+              <input
+                type="number"
+                class="form-control"
+                id="issn"
+                placeholder="Digite o issn do livro"
+              />
             </div>
             <div class="form-group my-2">
               <label for="editora">Editora</label>
-              <input type="text" class="form-control" id="editora" placeholder="Digite a editora do livro">
+              <input
+                type="text"
+                class="form-control"
+                id="editora"
+                placeholder="Digite a editora do livro"
+              />
             </div>
           </div>
           <div class="col-md">
             <div class="form-group mb-2">
               <label for="titulo" class="font-weight-bold">Título</label>
-              <input type="text" class="form-control" id="titulo" placeholder="Digite o título do livro" required>
+              <input
+                type="text"
+                class="form-control"
+                id="titulo"
+                placeholder="Digite o título do livro"
+                required
+              />
             </div>
             <div class="form-group my-2">
               <label for="edicao" class="font-weight-bold">Edição</label>
-              <input type="number" class="form-control" id="edicao" placeholder="Digite a edição do livro" >
+              <input
+                type="number"
+                class="form-control"
+                id="edicao"
+                placeholder="Digite a edição do livro"
+              />
             </div>
-            <div class="form-group my-2"> 
+            <div class="form-group my-2">
               <label for="ano" class="form-check-label">Ano</label>
-              <input type="number" min="1900" max="2019" class="form-control" id="ano" placeholder="Digite o ano do livro"  required>
+              <input
+                type="number"
+                min="1900"
+                max="2019"
+                class="form-control"
+                id="ano"
+                placeholder="Digite o ano do livro"
+                required
+              />
               <div class="invalid-feedback">
                 O ano deve ser entre 1900 e 2019
               </div>
             </div>
           </div>
         </div>
-        <button class="btn btn-primary bg-purple">Solicitar Livros</button>
+        <div id="alert-block-placeholder"></div>
+        <button class="btn btn-primary">Solicitar Livros</button>
       </form>
     </section>
 
     <section class="section-table">
-      <div class="container">
-        <table class="table table-hover" id="book-table">
-  <thead>
-    <tr>
-      <th scope="col">Vinculo</th>
-      <th scope="col">Título</th>
-      <th scope="col">Autor</th>
-      <th scope="col">Edição</th>
-      <th scope="col">ISSN</th>
-      <th scope="col">Ano</th>
-      <th scope="col">Editora</th>
-    </tr>
-  </thead>
-  <tbody id="book-table__body">
 
-  </tbody>
-</table>
+      <div class="container">
+        <div class="row">
+          <h2>Tabela de Solicitação</h2>
+        </div>
+
+        <table class="table table-hover" id="book-table">
+          <thead>
+            <tr>
+              <th scope="col">Vinculo</th>
+              <th scope="col">Título</th>
+              <th scope="col">Autor</th>
+              <th scope="col">Edição</th>
+              <th scope="col">ISSN</th>
+              <th scope="col">Ano</th>
+              <th scope="col">Editora</th>
+            </tr>
+          </thead>
+          <tbody id="book-table__body"></tbody>
+        </table>
       </div>
     </section>
 

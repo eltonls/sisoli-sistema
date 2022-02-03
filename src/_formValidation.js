@@ -10,11 +10,18 @@ const checkISSN = (ISSN) => {
 	}
 } */
 
-export const validateForm = (event) => {
-	const formElement = event.target;
-	if(!formElement.checkValidity()) {
-		event.preventDefault();
-		event.stopPropagation();
-	}
-	formElement.classList.add("was-validated");
-}
+import { addBook } from "./_addBook";
+
+export const validateForm = (event, arr) => {
+  const formElement = event.target;
+  if (!formElement.checkValidity()) {
+    event.preventDefault();
+    event.stopPropagation();
+  } else {
+    event.preventDefault();
+    // Add the book to the array received
+    arr.push(addBook(event.target));
+    return true;
+  }
+  formElement.classList.add("was-validated");
+};
